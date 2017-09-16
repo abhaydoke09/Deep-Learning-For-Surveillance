@@ -26,8 +26,6 @@ export default class TagsBar extends React.Component {
                   onClick={() => onClickSecond(cur)}
                   style={{
                   backgroundColor: ColorCache.getColor(firstTag ? firstTag.tag : 'noData'),
-                  width: `${1/vidLen}%`,
-                  minWidth: 1,
                   height: 20,
                   flex: 1,
                   cursor: 'pointer'

@@ -42,28 +42,29 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+            <ReactPlayer
+              url='https://www.youtube.com/watch?v=WxnN05vOuSM'
+              controls
+              playing
+              ref="player"
+              width="inherit"
+            />
+            <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
+
+          </div>
+
+          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+          </div>
+
+
+
         </div>
-        <div
-          style={{
-            flexDirection: 'column',
-            width: '80%',
-            height: 'auto',
-            alignSelf: 'center',
-            display: 'flex',
-            justifySelf: 'center'
-          }}>
-          <ReactPlayer
-            url='https://www.youtube.com/watch?v=WxnN05vOuSM'
-            controls
-            playing
-            ref="player"
-          />
-          <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
-        </div>
+
       </div>
     );
   }

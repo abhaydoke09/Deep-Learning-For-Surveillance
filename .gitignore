@@ -1,3 +1,4 @@
 *.mp4
 *.txt
-
+FrontEnd/node_modules
+backend/node_modules

@@ -1,0 +1,19 @@
+{
+  "name": "react.video",
+  "main": "index.js",
+  "version": "1.0.10",
+  "homepage": "https://github.com/React-Components-Organization/react.video",
+  "authors": [
+    "Colonna",
+    "Olivier <olivier.colonna@accenture.com>"
+  ],
+  "description": "ReactVideo is a wrapper around <video> tag and all the api.",
+  "moduleType": [],
+  "keywords": [
+    "react-component",
+    "react.video",
+    "react-video",
+    "react"
+  ],
+  "license": "MIT"
+}
