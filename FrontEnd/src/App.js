@@ -46,6 +46,7 @@ class App extends Component {
   handleSelectVideo(video){
     this.setState({ url: video.videoUrl });
 
+
   }
 
   render() {
@@ -55,10 +56,12 @@ class App extends Component {
           <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
             <ReactPlayer
-              url={this.state.url}
+
+              url={[{src: this.state.url, type: 'video/mkv'}]}
               controls
               ref="player"
               width="inherit"
+              fileConfig={{ attributes: {preload : 'none'}}}
             />
             <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
 
