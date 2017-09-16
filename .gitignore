@@ -1,5 +1,8 @@
 *.mp4
 *.txt
 .*
+*.jpg
+*.jpeg
+*.avi
 object-detection/video_data/
 
