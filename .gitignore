@@ -1,3 +1,5 @@
 *.mp4
 *.txt
+.*
+object-detection/video_data/
 
