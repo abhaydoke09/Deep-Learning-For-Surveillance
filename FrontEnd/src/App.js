@@ -52,17 +52,22 @@ class App extends Component {
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            {
+              this.state.url ?
+                <div>
+                  <ReactPlayer
 
-            <ReactPlayer
-
-              url={this.state.url}
-              controls
-              ref="player"
-              width="inherit"
-              fileConfig={{ attributes: {preload : 'none'}}}
-            />
-            <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
-
+                    url={this.state.url}
+                    controls
+                    ref="player"
+                    width="inherit"
+                    fileConfig={{ attributes: {preload : 'none'}}}
+                  />
+                  <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
+                </div>
+                :
+                <h2>Please select a video</h2>
+            }
           </div>
 
           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
