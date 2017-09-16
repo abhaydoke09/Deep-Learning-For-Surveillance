@@ -18,13 +18,17 @@ class videoList extends Component {
   renderImages(imgArray){
 
     return imgArray.map((item,index) => {
+      const fileName = videos[index].split("/");
+
+      const className = `row video ${this.props.selected === fileName[fileName.length-1] ? 'active-video' : ''}`;
+
       return (
-        <div className="row" key={item}>
+        <div className={className} key={item}>
           <div className="col-lg-12">
 
-            <img className="img-thumbnail middle" src={item} onClick={event => this.props.selectVid(videos[index])}/>
+            <img className="middle" src={item} onClick={event => this.props.selectVid(videos[index])}/>
+            <p>{fileName[fileName.length-1]}</p>
 
-            <hr />
           </div>
         </div>
       );

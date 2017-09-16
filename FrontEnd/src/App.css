@@ -25,6 +25,45 @@
   flex: 1;
 }
 
+.content{
+  padding-top: 40px ;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.myNav{
+  background: #ff6961 !important;
+  color: white !important;
+}
+
+.myBrand{
+  text-decoration: none !important;
+  color: white !important;
+
+}
+
+.video {
+
+  padding: 15px;
+  margin: 15px;
+  text-align: center;
+}
+
+.video img{
+  width: 100%;
+}
+
+.active-video{
+  background-color: rgb(66,171,158);
+  color: white;
+}
+
+.video-thumbs{
+  margin-left: 20px;
+}
+
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

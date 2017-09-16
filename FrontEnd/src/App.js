@@ -4,8 +4,8 @@ import './App.css';
 import TagsBar from './TagsBar';
 import ReactPlayer from 'react-player'
 import VideoList from './components/videoList';
-import vid from './data/2.mkv';
-import vid2 from './data/2.mp4';
+import NavBar from './components/navbar';
+import vid from './data/1.mp4';
 import mime from 'mime-types';
 
 
@@ -47,47 +47,36 @@ class App extends Component {
   };
 
   selectVideo(url){
-    console.log(url);
     this.setState({ url });
-
-
   }
-
-  componentDidUpdate(){
-    console.log('src',this.refs.player.getInternalPlayer().src);
-    this.refs.player.getInternalPlayer().load();
-  }
-
-  componentDidMount(){
-    console.log('src',this.refs.player.getInternalPlayer().src);
-    this.refs.player.getInternalPlayer().load();
-  }
-
-
 
   render() {
-    console.log("url",this.state.url);
-    console.log(mime.lookup(vid2));
-
+    const fileName = this.state.url.split("/");
     return (
-      <div className="container">
+      <div>
+      <NavBar />
+      <div className=" content">
         <div className="row">
-          <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-
+          <div className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <h2>{fileName[fileName.length-1]}</h2>
             <ReactPlayer
 
-              url={[{src: this.state.url, type: 'video/mkv'}]}
+              url={[{src: this.state.url, type: 'video/mp4'}]}
               controls
               ref="player"
               width="inherit"
+              height="auto"
               fileConfig={{ attributes: {preload : 'none'}}}
             />
             <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
+            <hr />
 
           </div>
 
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <VideoList selectVid={this.selectVideo} />
+          <div className="col-lg-2 col-md-2 col-sm-2 col-xs-12 video-thumbs">
+
+          <h3>Videos</h3>
+          <VideoList selectVid={this.selectVideo} selected={fileName[fileName.length-1]}/>
 
           </div>
 
@@ -95,6 +84,7 @@ class App extends Component {
 
         </div>
 
+      </div>
       </div>
     );
   }
