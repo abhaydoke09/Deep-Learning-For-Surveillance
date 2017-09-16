@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import TagsBar from './TagsBar';
+import TagsBar from './components/tagsBar';
 import ReactPlayer from 'react-player'
 import VideoList from './components/videoList';
-
 
 const mock_data = [
   {
@@ -50,9 +48,6 @@ class App extends Component {
   }
 
   render() {
-
-    console.log(this.state);
-
     return (
       <div className="container">
         <div className="row">
@@ -72,11 +67,7 @@ class App extends Component {
 
           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <VideoList selectVid={this.handleSelectVideo} onClick={this.handleSelectVideo} selectedVideoUrl={this.state.url}/>
-
           </div>
-
-
-
         </div>
 
       </div>

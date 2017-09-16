@@ -1,4 +1,4 @@
-import { Colors } from './colors';
+import { Colors } from './staticData/colors';
 
 export default class ColorCache {
   static __mapping = {

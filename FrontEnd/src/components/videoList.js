@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './videoList.css';
 import videos from '../staticData/videos'
 
+
 export default class VideoList extends Component {
   render(){
     return (

@@ -9,6 +9,7 @@
     "react-dom": "^15.6.1",
     "react-player": "^0.24.4",
     "react-scripts": "1.0.13",
+    "react-tooltip": "^3.3.0",
     "react.video": "^1.0.14",
     "video-thumb": "0.0.3"
   },

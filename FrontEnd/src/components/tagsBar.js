@@ -1,5 +1,6 @@
 import React from 'react'
-import ColorCache from './colorCache';
+import ColorCache from '../colorCache';
+import ReactTooltip from 'react-tooltip';
 
 
 export default class TagsBar extends React.Component {
@@ -29,8 +30,9 @@ export default class TagsBar extends React.Component {
                   height: 20,
                   flex: 1,
                   cursor: 'pointer'
-
-                }}>
+                }}
+                data-tip={firstTag ? firstTag.tag : 'No significant event'}
+                >
 
                 </div>
               )
@@ -39,6 +41,7 @@ export default class TagsBar extends React.Component {
             )
           }
         </div>
+        <ReactTooltip />
       </div>
     )
   }
