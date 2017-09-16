@@ -50,6 +50,9 @@ class App extends Component {
   }
 
   render() {
+
+    console.log(this.state);
+
     return (
       <div className="container">
         <div className="row">
@@ -57,7 +60,7 @@ class App extends Component {
 
             <ReactPlayer
 
-              url={[{src: this.state.url, type: 'video/mkv'}]}
+              url={this.state.url}
               controls
               ref="player"
               width="inherit"
