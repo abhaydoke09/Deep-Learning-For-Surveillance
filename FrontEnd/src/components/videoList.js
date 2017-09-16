@@ -11,17 +11,18 @@ function importAll(r) {
 }
 
 const images = importAll(require.context('../data', false, /\.(png)$/));
+const videos = importAll(require.context('../data', false, /\.(mp4)$/));
 
 class videoList extends Component {
 
   renderImages(imgArray){
 
-    return imgArray.map(item => {
+    return imgArray.map((item,index) => {
       return (
-        <div className="row">
+        <div className="row" key={item}>
           <div className="col-lg-12">
 
-            <img className="img-thumbnail middle" src={item} onClick={event => this.props.selectVid(item.replace('.png','.mp4'))}/>
+            <img className="img-thumbnail middle" src={item} onClick={event => this.props.selectVid(videos[index])}/>
 
             <hr />
           </div>
@@ -34,7 +35,7 @@ class videoList extends Component {
   }
 
   render(){
-    console.log(images);
+    console.log(videos);
     return (
       <div>
       {this.renderImages(images)}
