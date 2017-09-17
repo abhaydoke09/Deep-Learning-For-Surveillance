@@ -214,6 +214,9 @@ def cleanup():
 		output[frame]["classes"] = []
 		output[frame]["class_count"] = defaultdict(int)
 		output[frame]["motion"] = []
+		output[frame]["unattended"] = 0
+		
+
 		for box in range(len(d[frame][1][0])):
 			if d[frame][1][0][box] >= 0.80:
 				# center point
@@ -275,7 +278,12 @@ for frame in output.keys():
 		if location_stats[item][2] == 0:
 			del location_stats[item]
 
-	print location_stats
+
+	unattended_count = 0
+	for item in location_stats.keys():
+		if location_stats[item][2]>100:
+			unattended_count+=1
+	output[frame]['unattended_count'] = unattended_count
 
 
 # 1 - Boxes
