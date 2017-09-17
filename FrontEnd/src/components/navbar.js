@@ -8,7 +8,7 @@ const Navbar = () => {
       <a href="#" className="brand-logo"><i className="material-icons myLogo">local_movies</i>
         QuickLook
         <span>
-        AI for public safety
+        | AI for public safety
       </span>
       </a>
 

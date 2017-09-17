@@ -9,18 +9,14 @@ const fs = require('fs');
 function getFiles(dir){
 
     var files = fs.readdirSync(dir);
-    for(var i in files){
-        //console.log(files[i]);
-        if(files[i].includes(".mp4")){
 
-          thumbler.extract(files[i], files[i].replace("mp4","png"), '00:00:22', '200x125', function(){
+
+          thumbler.extract('https://www.youtube.com/watch?v=oS80hlsNvHo&feature=youtu.be', 'thumbnail.png', '00:00:22', '200x125', function(){
 
 
           });
 
 
-        }
-    }
 }
 
 getFiles('./');
