@@ -223,13 +223,13 @@ def cleanup():
 					
 					h = 0
 					num_of_elem = len(d[d.keys()[i]][2][j])
-					count_elems = [[0]]
-					while h<num_of_elem:
+					count_elems = []
+					while h<=num_of_elem:
 						count_elems.append([0])
 						h += 1
 					count_elems[j] = d[d.keys()[i]][4][j]
 
-					if d[d.keys()[i]][2][0][j]=='suitcase' or d[d.keys()[i]][2][0][j]=='hand bag'
+					if d[d.keys()[i]][2][0][j]=='suitcase' or d[d.keys()[i]][2][0][j]=='hand bag':
 						for z in range(num_of_frames):
 							if math.sqrt((d[d.keys()[i]][3])**2+(d[d.keys()[i+1]][3])**2)<=50:
 								d[d.keys()[i]][5] = 'SUSPICIOUS BAG'
