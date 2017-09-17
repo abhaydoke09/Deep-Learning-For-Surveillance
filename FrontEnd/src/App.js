@@ -4,6 +4,7 @@ import TagsBar from './components/tagsBar';
 import MotionBar from './components/motionBar';
 import ReactPlayer from 'react-player'
 import VideoList from './components/videoList';
+import {fetchJson} from './dataAction';
 
 const mock_data = [
   {
@@ -51,7 +52,9 @@ class App extends Component {
 
   handleSelectVideo(video){
     this.setState({ url: video.videoUrl });
-    console.log('clicked');
+    // TODO add here endpoint
+    // const videoData = fetchJson()
+    // TODO add setState to move blob to state and then load from state
 
   }
 

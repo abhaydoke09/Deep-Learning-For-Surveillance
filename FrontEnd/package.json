@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "fetch": "^1.1.0",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-player": "^0.24.4",
