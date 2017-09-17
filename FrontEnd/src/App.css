@@ -1,0 +1,113 @@
+body{
+  background: white; /* For browsers that do not support gradients */
+
+}
+
+.myContainer{
+
+  padding-left: 10vw;
+  padding-right: 10vw;
+  height: 100%;
+
+}
+
+.myVideo{
+  padding-top: 6px;
+  height: 60vh !important;
+}
+
+.vidHeading{
+  padding-left: 10px;
+  font-size: 1.3em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.vidContent{
+  height: 100%;
+}
+
+.nav-wrapper{
+  padding-left: 10vw;
+  background: #FF404E;
+}
+
+.nav-wrapper span {
+  font-size: 0.4em;
+  font-weight: 100;
+  margin-left: 5px;
+
+}
+
+.myLogo{
+  font-size: 50px !important;
+}
+
+.vidList{
+  height: 80vh;
+  overflow-y: auto;
+
+}
+
+.legendBox{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+
+}
+
+
+.legendRow{
+  position: relative;
+  height: 20px !important;
+}
+
+.legendRow p{
+  padding-left: 40px;
+}
+
+.myCardContent{
+   /* For browsers that do not support gradients */
+   background: #1BA5B8 !important;
+
+}
+
+.card-content{
+
+  background: #012D41;
+  color: white;
+  padding: 10px !important;
+
+}
+
+.card-title{
+  font-size: 1em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+
+.mainVideoTitle {
+  font-size: 1.5em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.noVideoSelectedHeading {
+  font-size: 1.2em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+}

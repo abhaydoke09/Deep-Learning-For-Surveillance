@@ -1,0 +1,25 @@
+{
+  "name": "htn",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "fetch": "^1.1.0",
+    "materialize-css": "^0.100.2",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-player": "^0.24.4",
+    "react-popover": "^0.4.16",
+    "react-scripts": "1.0.13",
+    "react-tooltip": "^3.3.0",
+    "react.video": "^1.0.14",
+    "video-thumb": "0.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
