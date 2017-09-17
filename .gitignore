@@ -1,4 +1,13 @@
 *.mp4
 *.txt
+
+.*
+*.jpg
+*.jpeg
+*.avi
+object-detection/video_data/
+
+
 FrontEnd/node_modules
 backend/node_modules
+
