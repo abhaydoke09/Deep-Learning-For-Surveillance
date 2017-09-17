@@ -1,9 +1,10 @@
 import React from 'react';
 
 const getGreenAmount = (val) => {
-  //console.log((255 - (val * 2.55)));
   return parseInt(255 - (val * 2.55))
 };
+
+const getColor = (alt, cur) => alt ? `rgb(75, ${getGreenAmount(cur)}, 255)` : `rgb(255, ${getGreenAmount(cur)}, 0)`;
 
 export default class MotionBar extends React.Component {
 
@@ -18,7 +19,9 @@ export default class MotionBar extends React.Component {
         }}
       >
         <div style={{alignSelf: 'center', letterSpacing: 2, textAlign: 'center'}}>
-          MOTION DATA
+          {
+            this.props.title
+          }
         </div>
         <div style={{
           flex: 1,
@@ -28,13 +31,14 @@ export default class MotionBar extends React.Component {
           padding: 5
         }}>
           {
-            data.map(cur => (
+            data.map((cur, index) => (
               <div
+                onClick={() => this.props.onClickSecond(index)}
                 style={{
                   flex: 1,
                   alignSelf: 'flex-end',
                   height: `${1 * cur}`,
-                  backgroundColor: `rgb(255, ${getGreenAmount(cur)}, 0)`,
+                  backgroundColor: getColor(this.props.altColor, cur),
                   width: 'auto',
                   display: 'flex',
                   cursor: 'pointer',

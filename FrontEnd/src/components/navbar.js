@@ -5,7 +5,13 @@ const Navbar = () => {
     <nav>
     <div className="nav-wrapper">
 
-      <a href="#" className="brand-logo"><i className="material-icons myLogo">local_movies</i>QuickLook</a>
+      <a href="#" className="brand-logo"><i className="material-icons myLogo">local_movies</i>
+        QuickLook
+        <span>
+        AI for public safety
+      </span>
+      </a>
+
 
     </div>
   </nav>

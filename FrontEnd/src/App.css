@@ -12,12 +12,16 @@ body{
 }
 
 .myVideo{
-  padding-top: 8px;
+  padding-top: 6px;
   height: 60vh !important;
 }
 
 .vidHeading{
   padding-left: 10px;
+  font-size: 1.3em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
 }
 
 .vidContent{
@@ -27,6 +31,13 @@ body{
 .nav-wrapper{
   padding-left: 10vw;
   background: #FF404E;
+}
+
+.nav-wrapper span {
+  font-size: 0.4em;
+  font-weight: 100;
+  margin-left: 5px;
+
 }
 
 .myLogo{
@@ -72,15 +83,31 @@ body{
 }
 
 .card-title{
-  font-size: 1.5em !important;
+  font-size: 1em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
 }
 
 
-
+.mainVideoTitle {
+  font-size: 1.5em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
 
 
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.noVideoSelectedHeading {
+  font-size: 1.2em !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
 }

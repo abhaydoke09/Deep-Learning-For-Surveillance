@@ -37,9 +37,9 @@ export default class TagsBar extends React.Component {
   }
 
   handleSelect(cur){
-    this.setState({openPopover: false});
+    // this.setState({openPopover: false});
     this.props.onClickSecond(cur);
-    this.setState({openPopover: cur})
+    // this.setState({openPopover: cur})
   }
 
   shouldRenderTag(cur) {
@@ -56,22 +56,24 @@ export default class TagsBar extends React.Component {
 
   render(){
 
-    const { vidLen } = this.props;
+    const { data } = this.props;
 
     return(
       <div style={{flex: 1, boxShadow: '0px 5px 5px -2.5px rgba(178, 174, 189, 1)'}}>
-        <div style={{flex: 1, flexDirection: 'row', height: 20, display: 'flex'}}>
+        <div style={{flex: 1, flexDirection: 'row', height: 'auto', display: 'flex'}}>
           {
-            [...Array(vidLen).keys()].map(cur => {
-
-              const firstTag = this.shouldRenderTag(cur).find(tag => tag);
-              const renderPopover = !!this.state.openPopover && (this.state.openPopover === cur);
+            data.map((instance, cur) => {
+              console.log(instance);
+              const firstTag = Object.keys(instance).find(key => key);
+              const firstVal = Object.keys(instance).map(key => instance[key]).find(val => val);
+              // const renderPopover = !!this.state.openPopover && (this.state.openPopover === cur);
+              const renderPopover = false;
               return (
                 <ReactPopover
                   isOpen={renderPopover}
                   body={
                     <div style={{marginTop: 30, flex: 1, boxShadow: '0px 5px 5px -2.5px rgba(178, 174, 189, 1)',}}>
-                      <div style={{flex: 1, flexDirection: 'row', height: 35, width: 'auto', display: 'flex'}}>
+                      <div style={{flex: 1, flexDirection: 'row', width: 'auto', display: 'flex'}}>
                         {
                           renderPopover &&
                           this.getCurrentRange(cur).map(delta => {
@@ -82,7 +84,7 @@ export default class TagsBar extends React.Component {
                                 className="target"
                                 onClick={() => this.handleSelect(selectedCurrent)}
                                 style={{
-                                  backgroundColor: ColorCache.getColor(firstSubTag ? firstSubTag.tag : 'noData'),
+                                  backgroundColor: ColorCache.getColor(firstSubTag ? firstSubTag : 'noData'),
                                   height: 50,
                                   opacity: 1,
                                   flex: 1,
@@ -90,7 +92,7 @@ export default class TagsBar extends React.Component {
                                   border: '1px solid black',
                                   cursor: 'pointer'
                                 }}
-                                data-tip={`${formatToSec(selectedCurrent)} ${firstSubTag ? firstSubTag.tag : 'No significant event'}`}
+                                data-tip={`${formatToSec(selectedCurrent)} ${firstSubTag ? firstSubTag : 'No significant event'}`}
                               >
                               </div>
                             )
@@ -106,13 +108,13 @@ export default class TagsBar extends React.Component {
                     className="target"
                     onClick={() => this.handleSelect(cur)}
                     style={{
-                      backgroundColor: ColorCache.getColor(firstTag ? firstTag.tag : 'noDataDark', cur),
-                      height: 20,
+                      backgroundColor: ColorCache.getColor(firstTag ? firstTag : 'noDataDark', cur),
+                      height: 45,
                       flex: 1,
                       cursor: 'pointer',
                       opacity: shouldDarken(this.props.played, cur) ? 0.5 : 1,
                     }}
-                    data-tip={`${formatToSec(cur)} ${firstTag ? firstTag.tag : 'No significant event'}`}
+                    data-tip={`${formatToSec(cur)} ${firstTag ? firstTag : 'No significant event'}`}
                   >
                   </div>
                 </ReactPopover>

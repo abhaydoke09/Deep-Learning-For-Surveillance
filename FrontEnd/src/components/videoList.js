@@ -24,7 +24,7 @@ export default class VideoList extends Component {
               </div>
               <div className={className} onClick={() => this.props.onClick(videoItem)}>
 
-              <span className="card-title">Card Title</span>
+              <span className="card-title">{videoItem.title}</span>
 
           </div>
 
