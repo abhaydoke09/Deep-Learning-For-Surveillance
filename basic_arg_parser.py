@@ -213,6 +213,7 @@ def cleanup():
 		output[frame]["boxes"] = []
 		output[frame]["classes"] = []
 		output[frame]["class_count"] = defaultdict(int)
+		output[frame]["motion"] = []
 		for box in range(len(d[frame][1][0])):
 			if d[frame][1][0][box] >= 0.80:
 				# center point
@@ -220,6 +221,7 @@ def cleanup():
 				output[frame]["boxes"].append(d[frame][0][0][box])
 				output[frame]["classes"].append(d[frame][2][0][box])
 				output[frame]["class_count"][d[frame][2][0][box]] += 1
+				output[frame]["motion"].append(motion[box])
 	print output[1500]
 
 def update_location(frame_data, n):
