@@ -1,29 +1,84 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+body{
+  background: #DAECF3; /* For browsers that do not support gradients */
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-  flex: 1;
+.myContainer{
+
+  padding-left: 10vw;
+  padding-right: 10vw;
+  height: 100%;
+
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  width: 100%;
-  padding: 20px;
+.myVideo{
+  padding-top: 8px;
+  height: 60vh !important;
+}
+
+.vidHeading{
+  padding-left: 10px;
+}
+
+.vidContent{
+  height: 100%;
+}
+
+.nav-wrapper{
+  padding-left: 10vw;
+  background: #FF404E;
+}
+
+.myLogo{
+  font-size: 50px !important;
+}
+
+.vidList{
+  height: 80vh;
+  overflow-y: scroll;
+
+}
+
+.legendBox{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+
+}
+
+
+.legendRow{
+  position: relative;
+  height: 20px !important;
+}
+
+.legendRow p{
+  padding-left: 40px;
+}
+
+.myCardContent{
+   /* For browsers that do not support gradients */
+   background: #1BA5B8 !important;
+
+}
+
+.card-content{
+
+  background: #012D41;
   color: white;
-  flex: 1;
+  padding: 10px !important;
+
 }
 
-.App-intro {
-  font-size: large;
-  flex: 1;
+.card-title{
+  font-size: 1.5em !important;
 }
+
+
+
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

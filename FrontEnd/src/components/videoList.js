@@ -8,18 +8,32 @@ export default class VideoList extends Component {
     return (
       <div>
         {
-          videos.map(videoItem => (
-            <div className="row">
-              <div className="col-lg-12" style={{border: this.props.selectedVideoUrl === videoItem.videoUrl ? '2px solid red' : 'none'}}>
+          videos.map(videoItem => {
+            const className = `card-content ${this.props.selectedVideoUrl === videoItem.videoUrl ? 'myCardContent' : ''}`;
+            return (
+              <div className="row">
+          <div className="col xl12">
+            <div className="card">
+              <div className="card-image">
                 <img
-                  className="img-thumbnail middle"
-                  src={videoItem.thumbnailUrl}
-                  onClick={() => this.props.onClick(videoItem)}
+                src={videoItem.thumbnailUrl}
+                onClick={() => this.props.onClick(videoItem)}
                 />
-                <hr />
+
+
               </div>
+              <div className={className} onClick={() => this.props.onClick(videoItem)}>
+
+              <span className="card-title">Card Title</span>
+
+          </div>
+
             </div>
-          ))
+          </div>
+        </div>
+
+            )
+          })
         }
       </div>
     );

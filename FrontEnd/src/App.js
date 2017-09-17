@@ -3,6 +3,8 @@ import './App.css';
 import TagsBar from './components/tagsBar';
 import ReactPlayer from 'react-player'
 import VideoList from './components/videoList';
+import NavBar from './components/navbar';
+import VidLegend from './components/vidLegend';
 
 const mock_data = [
   {
@@ -49,32 +51,52 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
+      <NavBar />
+      <div className="myContainer">
+      <div className="section">
+
         <div className="row">
-          <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+          <div className="col xl9 l9 m9 s12">
+
+
             {
               this.state.url ?
-                <div>
-                  <ReactPlayer
 
+                <div>
+                <h4>Name</h4>
+                <div className="row">
+
+                  <ReactPlayer
+                    playing
                     url={this.state.url}
                     controls
                     ref="player"
                     width="inherit"
-                    fileConfig={{ attributes: {preload : 'none'}}}
+                    className="responsive-video myVideo"
                   />
+
                   <TagsBar data={this.state.data} vidLen={this.state.vidLen} onClickSecond={this.handleClickSecond}/>
+
+                  </div>
                 </div>
                 :
-                <h2>Please select a video</h2>
+                <h4>Please select a video</h4>
             }
+            <VidLegend />
           </div>
 
-          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+          <div className="col xl2 l2 m2 s12 vidContent">
+
+          <h4 className="vidHeading">Videos</h4>
+          <div className="vidList">
           <VideoList selectVid={this.handleSelectVideo} onClick={this.handleSelectVideo} selectedVideoUrl={this.state.url}/>
           </div>
+          </div>
         </div>
-
+        </div>
+      </div>
       </div>
     );
   }
