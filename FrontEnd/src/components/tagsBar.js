@@ -4,14 +4,28 @@ import ReactTooltip from 'react-tooltip';
 import ReactPopover from 'react-popover';
 
 const formatToSec = (num) => {
-
-  console.log(num);
-
   const mins = Math.floor(num/60);
   const seconds = num % 60;
-  return ` ${mins < 10 ? '0' : ''}${mins}:${seconds < 10 ? '0' : ''}${seconds}  --  `
+  return ` ${mins < 15 ? '0' : ''}${mins}:${seconds < 15 ? '0' : ''}${seconds}  --  `
 };
 
+const getVal = (delta, cur) => {
+  console.log(delta, cur);
+  let res = 0;
+    if(delta === 15){
+      res = cur;
+      }
+    if(delta < 15){
+      res = cur - (15 - delta);
+      }
+    if(delta > 15){
+      res = cur + (delta - 15);
+      }
+  console.log(res);
+  return res;
+};
+
+const shouldDarken = (played, current) => current >= played;
 
 export default class TagsBar extends React.Component {
   constructor(){
@@ -23,6 +37,7 @@ export default class TagsBar extends React.Component {
   }
 
   handleSelect(cur){
+    this.setState({openPopover: false});
     this.props.onClickSecond(cur);
     this.setState({openPopover: cur})
   }
@@ -33,8 +48,8 @@ export default class TagsBar extends React.Component {
   };
 
   getCurrentRange(cur){
-    const start = cur - 10 > 0 ? 10 : Math.abs(cur - 0) + 1;
-    const end = cur + 10 < this.props.vidLen ? 10 : this.props.vidLen - cur;
+    const start = cur - 15 > 0 ? 15 : Math.abs(cur - 0) + 1;
+    const end = cur + 15 < this.props.vidLen ? 15 : this.props.vidLen - cur;
 
     return [...Array(Math.abs(start) + Math.abs(end)).keys()]
   }
@@ -44,7 +59,7 @@ export default class TagsBar extends React.Component {
     const { vidLen } = this.props;
 
     return(
-      <div style={{flex: 1}}>
+      <div style={{flex: 1, boxShadow: '0px 5px 5px -2.5px rgba(178, 174, 189, 1)'}}>
         <div style={{flex: 1, flexDirection: 'row', height: 20, display: 'flex'}}>
           {
             [...Array(vidLen).keys()].map(cur => {
@@ -55,25 +70,27 @@ export default class TagsBar extends React.Component {
                 <ReactPopover
                   isOpen={renderPopover}
                   body={
-                    <div>
+                    <div style={{marginTop: 30, flex: 1, boxShadow: '0px 5px 5px -2.5px rgba(178, 174, 189, 1)',}}>
                       <div style={{flex: 1, flexDirection: 'row', height: 35, width: 'auto', display: 'flex'}}>
                         {
                           renderPopover &&
                           this.getCurrentRange(cur).map(delta => {
-                            const firstSubTag = this.shouldRenderTag(delta < 10 ? cur - delta : cur + delta ).find(tag => tag);
+                            const selectedCurrent = getVal(delta, cur);
+                            const firstSubTag = this.shouldRenderTag(selectedCurrent).find(tag => tag);
                             return (
                               <div
                                 className="target"
-                                onClick={() => this.handleSelect(delta < 10 ? cur - delta : cur + delta )}
+                                onClick={() => this.handleSelect(selectedCurrent)}
                                 style={{
                                   backgroundColor: ColorCache.getColor(firstSubTag ? firstSubTag.tag : 'noData'),
-                                  height: 35,
+                                  height: 50,
+                                  opacity: 1,
                                   flex: 1,
-                                  width: 10,
+                                  width: 15,
                                   border: '1px solid black',
                                   cursor: 'pointer'
                                 }}
-                                data-tip={`${formatToSec(cur+delta)} ${firstSubTag ? firstSubTag.tag : 'No significant event'}`}
+                                data-tip={`${formatToSec(selectedCurrent)} ${firstSubTag ? firstSubTag.tag : 'No significant event'}`}
                               >
                               </div>
                             )
@@ -89,10 +106,11 @@ export default class TagsBar extends React.Component {
                     className="target"
                     onClick={() => this.handleSelect(cur)}
                     style={{
-                      backgroundColor: ColorCache.getColor(firstTag ? firstTag.tag : 'noData'),
+                      backgroundColor: ColorCache.getColor(firstTag ? firstTag.tag : 'noDataDark', cur),
                       height: 20,
                       flex: 1,
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      opacity: shouldDarken(this.props.played, cur) ? 0.5 : 1,
                     }}
                     data-tip={`${formatToSec(cur)} ${firstTag ? firstTag.tag : 'No significant event'}`}
                   >

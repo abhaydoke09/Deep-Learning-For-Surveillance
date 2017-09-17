@@ -1,5 +1,5 @@
 body{
-  background: #DAECF3; /* For browsers that do not support gradients */
+  background: white; /* For browsers that do not support gradients */
 
 }
 
@@ -35,7 +35,7 @@ body{
 
 .vidList{
   height: 80vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 
 }
 

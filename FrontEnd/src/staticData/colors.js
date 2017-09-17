@@ -37,5 +37,6 @@ export const Colors = {
     yellow: '#ffff00',
     black: '#000000',
   },
-  noData: '#dfdbea'
+  noData: '#dfdbea',
+  noDataDark: '#bcbcbc'
 };
