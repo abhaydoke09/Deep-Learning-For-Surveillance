@@ -1,18 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Sep 16 02:17:00 2017
-
-@author: david
-"""
-
 import math
 import pickle
 import csv
 import numpy as np
 import json
 import simplejson as sj
+from collections import defaultdict
 
 d = pickle.load( open( "result.p", "rb" ))
+motion = pickle.load( open( "unattended_luggage_motion.p", "rb" ))
 #read binary
 
 
@@ -211,45 +206,75 @@ xref = {
 
 num_of_frames = 100
 
+output = {}
 def cleanup():
-	for i in range(num_of_frames):
-		for j in range(100):
-
-			if d[d.keys()[i]][1][0][j] >= 0.80:
+	for frame in d.keys():
+		output[frame] = {}
+		output[frame]["boxes"] = []
+		output[frame]["classes"] = []
+		output[frame]["class_count"] = defaultdict(int)
+		for box in range(len(d[frame][1][0])):
+			if d[frame][1][0][box] >= 0.80:
 				# center point
-				d[d.keys()[i]][3]=[(d[d.keys()[i]][0][0][j][0]+d[d.keys()[i]][0][0][j][2])*0.5,(d[d.keys()[i]][0][0][j][1]+d[d.keys()[i]][0][0][j][3])*0.5]
-				# mapping key to value for class
-					d[d.keys()[i]][2][0][j] = xref.keys()[xref.values().index(int(d[d.keys()[i]][2][0][j]))]
-					
-					h = 0
-					num_of_elem = len(d[d.keys()[i]][2][j])
-					count_elems = []
-					while h<=num_of_elem:
-						count_elems.append([0])
-						h += 1
-					count_elems[j] = d[d.keys()[i]][4][j]
+				#print d[frame][2][0][box]
+				output[frame]["boxes"].append(d[frame][0][0][box])
+				output[frame]["classes"].append(d[frame][2][0][box])
+				output[frame]["class_count"][d[frame][2][0][box]] += 1
+	print output[1500]
 
-					if d[d.keys()[i]][2][0][j]=='suitcase' or d[d.keys()[i]][2][0][j]=='hand bag':
-						for z in range(num_of_frames):
-							if math.sqrt((d[d.keys()[i]][3])**2+(d[d.keys()[i+1]][3])**2)<=50:
-								d[d.keys()[i]][5] = 'SUSPICIOUS BAG'
-							else:
-								d[d.keys()[i]][5] = 'OK'
-					else:
-						pass
+def update_location(frame_data, n):
+	cnt = 0
+	bag_type = frame_data['classes'][n]
+	bag_count = 0
+	backpack_count = 0
+	xmin,ymin,xmax,ymax = frame_data['boxes'][n]
+	threshold = 10
+	for item in location_stats.keys():
+		if 'bag' in item:
+			bag_count+=1
+		if 'backpack' in item:
+			backpack_count+=1
 
-			else: 
-				k = 0
-				while k<=3:
-					del d[d.keys()[i]][k][0][j]
-					del d[d.keys()[i]][k][0][j]
-					del d[d.keys()[i]][k][0][j]
-					del d[d.keys()[i]][k][0][j]
-					k += 1
+	if not location_stats:
+		if bag_type==27.0:
+			location_stats['backpack'+str(backpack_count+1)] =  [(xmax+xmin)/2.0, (ymin+ymax)/2.0, 1]
+		if bag_type==33.0:
+			location_stats['bag'+str(bag_count+1)] =  [(xmax+xmin)/2.0, (ymin+ymax)/2.0, 1]
+	else:
+		centerx = (xmax+xmin)/2.0
+		centery = (ymin+ymax)/2.0
+		if bag_type==27.0:
+			for item in location_stats.keys():
+				if 'backpack' in item:
+					dist = math.sqrt( (location_stats[item][0] - centerx)**2 + (location_stats[item][1] - centery)**2 )
+					if dist < threshold:
+						location_stats[item] = [centerx, centery, location_stats[item][2]+2]
+		if bag_type==33.0:
+			for item in location_stats.keys():
+				if 'bag' in item:
+					dist = math.sqrt( (location_stats[item][0] - centerx)**2 + (location_stats[item][1] - centery)**2 )
+					if dist < threshold:
+						location_stats[item] = [centerx, centery, location_stats[item][2]+2]
+
+	print location_stats
 
 
 cleanup()
-jsonify()
+
+location_stats = {}
+
+for frame in output.keys():
+	number_of_boxes = len(output[frame]['classes'])
+	for c in range(len(output[frame]['classes'])):
+		if output[frame]['classes'][c]==27.0 or output[frame]['classes'][c]==33.0:
+			update_location(output[frame],c)
+	for item in location_stats.keys():
+		location_stats[item][2] = location_stats[item][2]-1
+		if location_stats[item][2] == 0:
+			del location_stats[item]
+
+	print location_stats
+
 
 # 1 - Boxes
 # 2 - Liklihood probability
